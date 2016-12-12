@@ -21,13 +21,13 @@ The following small utilities are bundled with the API:
 Lists the currently active clients on the networks. Takes parameters for
 controller, username, password, controller version and site ID (UniFi >= 3.x)
 
-Outputs a pipe delimited list:  MAC | IP | Hostname | Uplink MAC
+Outputs a pipe delimited list:  MAC | OUI | IP | Hostname | Uplink MAC
 ```
 jb@unifi:~ % unifi-ls-clients -c localhost -u admin -p p4ssw0rd -v v4
-22-34-81-A4-54-A2|70.178.189.235|Router|Unknown|False
-44-27-98-46-F0-BA|192.168.1.11|Access Point|33-22-08-9C-65-25|False
-33-22-08-9C-65-25|192.168.1.37|PoE Switch|22-34-81-A4-54-A2|False
-22-34-81-A4-54-D2|192.168.1.5|Daniel's iPhone|44-27-98-46-F0-BA|True
+22-34-81-A4-54-A2||70.178.189.235|Router|Unknown|False
+44-27-98-46-F0-BA||192.168.1.11|Access Point|33-22-08-9C-65-25|False
+33-22-08-9C-65-25||192.168.1.37|PoE Switch|22-34-81-A4-54-A2|False
+22-34-81-A4-54-D2|Apple|192.168.1.5|Daniel's iPhone|44-27-98-46-F0-BA|True
 ```
 
 ### unifi-block-client

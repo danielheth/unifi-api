@@ -30,7 +30,7 @@ for ap in aps:
     mac = ap.get('mac')
     ip = ap.get('ip')
     blocked = ap.get('blocked', 'False')
-    print "%s|%s|%s|%s|%s" % (mac.replace(':', '-').upper(), ip, name, ap_mac, blocked)
+    print "%s||%s|%s|%s|%s" % (mac.replace(':', '-').upper(), ip, name, ap_mac, blocked)
 
 
 
@@ -42,12 +42,13 @@ clients = c.get_clients()
 for client in clients:
     ap_mac = client.get('ap_mac') or client.get('sw_mac')
     mac = client.get('mac')
+    oui = client.get('oui', 'Unknown')
     ip = client.get('ip')
-    name = client.get('name') or client.get('hostname', 'Unknown')
+    name = client.get('hostname', 'Unknown')
     blocked = client.get('blocked', 'False')
 
-    if mac == '2c:33:61:ac:77:c8':
-        for key, value in client.iteritems():
-            print key, value
+#    if name == 'Daniels-iPhone':
+#        for key, value in client.iteritems():
+#            print key, value
 
-    print "%s|%s|%s|%s|%s" % (mac.replace(':', '-').upper(), ip, name, ap_mac.replace(':', '-').upper(), blocked)
+    print "%s|%s|%s|%s|%s|%s" % (mac.replace(':', '-').upper(), oui, ip, name, ap_mac.replace(':', '-').upper(), blocked)
