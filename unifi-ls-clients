@@ -25,11 +25,12 @@ for ap in aps:
     uplink = ap.get('uplink')
     ap_mac = uplink.get('uplink_mac', 'Unknown')
     if ap_mac != 'Unknown':
-        ap_mac = ap_mac.replace(':','-').upper()
+        ap_mac = ap_mac.replace(':', '-').upper()
     name = ap.get('name', '')
     mac = ap.get('mac')
     ip = ap.get('ip')
-    print "%s|%s|%s|%s" % (mac.replace(':','-').upper(), ip, name, ap_mac)
+    blocked = ap.get('blocked', 'False')
+    print "%s|%s|%s|%s|%s" % (mac.replace(':', '-').upper(), ip, name, ap_mac, blocked)
 
 
 
@@ -43,4 +44,10 @@ for client in clients:
     mac = client.get('mac')
     ip = client.get('ip')
     name = client.get('name') or client.get('hostname', 'Unknown')
-    print "%s|%s|%s|%s" % (mac.replace(':','-').upper(), ip, name, ap_mac.replace(':','-').upper())
+    blocked = client.get('blocked', 'False')
+
+    if mac == '2c:33:61:ac:77:c8':
+        for key, value in client.iteritems():
+            print key, value
+
+    print "%s|%s|%s|%s|%s" % (mac.replace(':', '-').upper(), ip, name, ap_mac.replace(':', '-').upper(), blocked)
