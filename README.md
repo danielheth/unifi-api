@@ -1,9 +1,3 @@
-# This project is not well maintained
-
-Issues and pull requests on this repository may not be acted on in a timely
-manner, or at all.  You are of course welcome to use it anyway. You are even
-more welcome to fork it and maintain the results.
-
 unifi-api
 =========
 
@@ -15,7 +9,7 @@ Forked from https://github.com/calmh/unifi-api due to unmaintained status.
 Install
 -------
 
-    sudo pip install -U pyunifi
+    sudo pip install -U unifi
 
 Utilities
 ---------
