@@ -17,18 +17,30 @@ c = Controller(args.controller, args.username, args.password, args.port, args.ve
 
 aps = c.get_aps()
 ap_names = dict([(ap['mac'], ap.get('name')) for ap in aps])
+
+#for key, value in aps[0].iteritems():
+#    print key, value
+
+for ap in aps:
+    uplink = ap.get('uplink')
+    ap_mac = uplink.get('uplink_mac', 'Unknown')
+    if ap_mac != 'Unknown':
+        ap_mac = ap_mac.replace(':','-').upper()
+    name = ap.get('name', '')
+    mac = ap.get('mac')
+    ip = ap.get('ip')
+    print "%s|%s|%s|%s" % (mac.replace(':','-').upper(), ip, name, ap_mac)
+
+
+
 clients = c.get_clients()
-clients.sort(key=lambda x: -x['rssi'])
 
-FORMAT = '%-16s  %18s  %-12s  %4s  %4s  %3s  %3s'
-print(FORMAT % ('NAME', 'MAC', 'AP', 'CHAN', 'RSSI', 'RX', 'TX'))
+#for key, value in clients[1].iteritems():
+#    print key, value
+
 for client in clients:
-    ap_name = ap_names[client['ap_mac']]
-    name = client.get('hostname') or client.get('ip', 'Unknown')
-    rssi = client['rssi']
-    mac = client['mac']
-    rx = int(client['rx_rate'] / 1000)
-    tx = int(client['tx_rate'] / 1000)
-    channel = client['channel']
-
-    print(FORMAT % (name, mac, ap_name, channel, rssi, rx, tx))
+    ap_mac = client.get('ap_mac') or client.get('sw_mac')
+    mac = client.get('mac')
+    ip = client.get('ip')
+    name = client.get('name') or client.get('hostname', 'Unknown')
+    print "%s|%s|%s|%s" % (mac.replace(':','-').upper(), ip, name, ap_mac.replace(':','-').upper())
